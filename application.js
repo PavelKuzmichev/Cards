@@ -1,14 +1,12 @@
 window.application = {
     blocks: {},
     screens: {},
+    currentDifficulty: 'easy',
     renderScreen: (screen) => {
         if (window.application.currentScreen === screen) {
             return;
         }
         clearElement(app);
-        window.application.timers.forEach((timer) => {
-            clearInterval(timer);
-        });
 
         window.application.currentScreen = screen;
 

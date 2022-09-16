@@ -1,20 +1,33 @@
+body {
+  background-color: #004980;
+}
+
 * {
   margin: 0;
   padding: 0;
-  font-family: "Marck Script", sans-serif;
-  -webkit-animation: show 1s;
-          animation: show 1s;
-}
-
-body {
-  background-color: #f7f7f7;
 }
 
 .app {
-  min-height: 345px;
-  background-image: url(../images/back.png);
-  background-repeat: no-repeat;
-  padding-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.app__popup {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 480px;
+  height: 459px;
+  background: #c2f5ff;
+  border-radius: 12px;
+  padding: 52px 69px 48px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22,150 +35,67 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 32px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.app__playerList {
-  list-style-type: none;
-  -webkit-animation-name: none;
-          animation-name: none;
-}
-
-.app__player {
-  text-align: end;
-  font-family: "Marck Script";
+.app__difficultyLevelTitle {
+  width: 208px;
+  font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
-  line-height: 24px;
-  -webkit-animation-name: none;
-          animation-name: none;
-}
-
-.app__title {
-  font-family: "Marck Script";
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 32px;
+  font-size: 40px;
+  line-height: 48px;
   text-align: center;
+  -webkit-font-feature-settings: "pnum" on, "lnum" on;
+          font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
 }
 
-.app__logintitle, .app__lobbytitle, .app__gametitle, .app__playerLIstTitle {
-  font-family: "Marck Script";
-  color: black;
-  font-size: 48px;
-  text-align: center;
-  text-shadow: 16px 16px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
+.app__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 26px;
+  margin: 48px 0 67px;
 }
 
-.app__input {
-  width: 234px;
-  height: 48px;
-  border-radius: 30px;
+.app__button_choice {
   border: none;
-  font-family: "Marck Script";
+  width: 97px;
+  height: 98px;
+  font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
-  font-size: 22px;
-  line-height: 24px;
-  border: 2px #e3e0fd solid;
+  font-size: 64px;
+  line-height: 72px;
+  color: #0080c1;
   text-align: center;
-  -webkit-box-shadow: 16px 16px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 16px 16px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  border-radius: 12px;
 }
 
-.app__input:focus {
-  outline: none;
-  border: 2px #6c5df7 solid;
-  -webkit-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
-}
-
-.app__button {
-  width: 234px;
-  height: 48px;
-  background: #2515fc;
-  border-radius: 30px;
+.app__button_start {
   border: none;
-  font-family: "Marck Script";
+  width: 246px;
+  height: 48px;
+  font-family: "StratosSkyeng";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 24px;
+  line-height: 32px;
+  -webkit-font-feature-settings: "pnum" on, "lnum" on;
+          font-feature-settings: "pnum" on, "lnum" on;
+  text-align: center;
   color: #ffffff;
-  text-align: center;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-box-shadow: 16px 16px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 16px 16px 10px rgba(0, 0, 0, 0.5), 6px 6px 10px rgba(0, 0, 0, 0.5);
-  outline: none;
-  -webkit-transition: all 1s;
-  transition: all 1s;
+  background: #7ac100;
+  border-radius: 12px;
 }
 
-.app__button:hover {
+button:hover {
   cursor: pointer;
-  -webkit-box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.5);
-}
-
-@-webkit-keyframes show {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes show {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media screen and (max-width: 1830px) {
-  .app {
-    padding: 32px;
-    gap: 16px;
-    background-image: url(../images/back-tablet.png);
-  }
-}
-
-@media screen and (max-width: 1550px) {
-  .app {
-    background-position-y: 95px;
-  }
-}
-
-@media screen and (max-width: 1235px) {
-  .app {
-    background-position-y: 150px;
-    background-image: url(../images/back-mobile.png);
-  }
-}
-
-@media screen and (max-width: 955px) {
-  .app {
-    min-height: 500px;
-    background-position-y: 332px;
-    background-position-x: right;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .app {
-    min-height: 550px;
-    background-position-y: bottom;
-    background-position-x: center;
-  }
-  .app__playerLIstTitle {
-    font-size: 40px;
-  }
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
 }
 /*# sourceMappingURL=style.css.map */
