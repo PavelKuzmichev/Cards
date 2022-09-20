@@ -98,4 +98,8 @@ button:hover {
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
 }
+
+.active {
+  border: red solid 1px;
+}
 /*# sourceMappingURL=style.css.map */

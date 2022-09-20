@@ -73,3 +73,6 @@ button:hover {
     cursor: pointer;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
 }
+.active {
+    border: red solid 1px;
+}
