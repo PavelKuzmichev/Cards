@@ -17,23 +17,22 @@ const createElement = (tag, name, textContent, container, callback) => {
     return element;
 };
 const choiceDifLevel = (event) => {
-    console.log('click')
     window.application.currentDifficulty = event.target.value;
 };
 const startGame = () => {
-        window.application.renderScreen("game");
-        setTimeout(() => {
-            const cards = app.querySelectorAll('.app__card')
-            cards.forEach(card=>{
-               card.classList.add('transform')
-                
+    window.application.renderScreen("game");
+    setTimeout(() => {
+        const cards = app.querySelectorAll('.app__card')
+        cards.forEach(card => {
+            card.classList.add('transform')
+
         })
-        }, 1000);
+    }, 5000);
 };
 const flipCard = (event) => {
 
-event.target.parentElement.classList.remove('transform')
-        
+    event.target.parentElement.classList.remove('transform')
+
 }
 
 const renderPopup = (container) => createElement("div", "popup", "", container);
@@ -42,12 +41,16 @@ const renderDifficultyLevelStartButton = (container) => createElement("button", 
 const renderRestartButton = (container) => createElement("button", "button_start", "Начать заново", container, startGame);
 const renderDifficultyLeveChoiceButtons = (container) => {
     const boxButtons = createElement("div", "buttons", "", container);
-    boxButtons.addEventListener('click',(event)=>{
-      const buttons = event.target.parentElement.querySelectorAll('button')
-      buttons.forEach(button => {
-        button.classList.remove('app__button_choice_active')
-      });
-      event.target.classList.add('app__button_choice_active')
+    boxButtons.addEventListener('click', (event) => {
+
+        if (!event.target.classList.contains('app__button_choice')) {
+            return
+        }
+        const buttons = event.target.parentElement.querySelectorAll('button')
+        buttons.forEach(button => {
+            button.classList.remove('app__button_choice_active')
+        });
+        event.target.classList.add('app__button_choice_active')
     })
     const buttonFirst = createElement("button", "button_choice", "1", boxButtons, choiceDifLevel);
     const buttonSecond = createElement("button", "button_choice", "2", boxButtons, choiceDifLevel);
@@ -56,23 +59,24 @@ const renderDifficultyLeveChoiceButtons = (container) => {
     buttonSecond.value = "average";
     buttonThird.value = "hard";
 };
-const renderGameScreenCards = (container)=>{
+const renderGameScreenCards = (container) => {
     const cards = createElement("div", "cards", "", container);
     for (let i = 0; i < 36; i++) {
         const card = createElement("div", "card", "", cards)
         const front = createElement("div", "front", "", card)
         const back = createElement("div", "back", "", card, flipCard)
-      
-        
+
+
     }
 }
 const renderGameScreenHeader = (container) => createElement("div", "header", "", container);
 const renderGameScreenTimer = (container) => {
-   const box = createElement("div", "timer", "", container);
-   const headerTimer = createElement('div', 'timer-header','', box)
-createElement("div", "timer_min", "min", headerTimer);
-createElement("div", "timer_sec", "sec", headerTimer);
-createElement("div", "timer_value", "00.00", box);}
+    const box = createElement("div", "timer", "", container);
+    const headerTimer = createElement('div', 'timer-header', '', box)
+    createElement("div", "timer_min", "min", headerTimer);
+    createElement("div", "timer_sec", "sec", headerTimer);
+    createElement("div", "timer_value", "00.00", box);
+}
 const renderDifficultyLevelScreen = () => {
     const popup = window.application.renderBlock("popup", app);
     window.application.renderBlock("difficultyLevelTitle", popup);
@@ -80,7 +84,7 @@ const renderDifficultyLevelScreen = () => {
     window.application.renderBlock("difficultyLevelStartButton", popup);
 };
 
-const renderGameScreen = () =>{
+const renderGameScreen = () => {
     const header = window.application.renderBlock('gameScreenHeader', app)
     window.application.renderBlock("gameScreenTimer", header);
     window.application.renderBlock("restartButton", header);

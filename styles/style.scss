@@ -23,6 +23,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 158px;
 }
 .app__difficultyLevelTitle {
     width: 208px;
@@ -138,6 +139,7 @@ color: #FFFFFF;
 }
 
 .app__card {
+    cursor: pointer;
     position: relative;
     width: 95px;
     height: 133px;

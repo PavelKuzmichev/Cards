@@ -40,6 +40,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 158px;
 }
 
 .app__difficultyLevelTitle {
@@ -188,6 +189,7 @@ button:hover {
 }
 
 .app__card {
+  cursor: pointer;
   position: relative;
   width: 95px;
   height: 133px;
