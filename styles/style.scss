@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .app {
     display: flex;
     flex-direction: column;
@@ -13,6 +14,7 @@ body {
     height: 100vh;
     align-items: center;
 }
+
 .app__popup {
     box-sizing: border-box;
     width: 480px;
@@ -25,17 +27,19 @@ body {
     align-items: center;
     margin-top: 158px;
 }
+
 .app__difficultyLevelTitle {
     width: 208px;
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
     line-height: 48px;
     text-align: center;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #004980;
 }
+
 .app__buttons {
     display: flex;
     gap: 26px;
@@ -46,41 +50,46 @@ body {
     border: none;
     width: 97px;
     height: 98px;
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
     color: #0080c1;
     text-align: center;
-    background: #ffffff;
+    background: #fff;
     border-radius: 12px;
 }
+
 .app__button_start {
     border: none;
     width: 246px;
     height: 48px;
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     text-align: center;
-    color: #ffffff;
+    color: #fff;
     background: #7ac100;
     border-radius: 12px;
 }
+
 button:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 80%);
 }
+
 .app__button_choice_active {
     border: red solid 1px;
 }
-.app__timer{
+
+.app__timer {
     width: 155px;
 }
+
 .app__header {
     width: 100%;
     display: flex;
@@ -88,54 +97,49 @@ button:hover {
     align-items: center;
     padding-bottom: 35px;
 }
-.app__timer-header{
-   gap: 57px;
-   display: flex;
-   justify-content: flex-end;
+
+.app__timer-header {
+    gap: 57px;
+    display: flex;
+    justify-content: flex-end;
 }
+
 .app__timer_min {
     width: 28px;
-   
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    
     font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #FFFFFF;
+    color: #fff;
 }
+
 .app__timer_sec {
     width: 28px;
-    
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
- 
     font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #FFFFFF;
+    color: #fff;
 }
-.app__timer_value {
-width: 155px;
-text-align: center;
-font-family: 'StratosSkyeng';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
 
-color: #FFFFFF;
+.app__timer_value {
+    width: 155px;
+    text-align: center;
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    color: #fff;
 }
+
 .app__cards {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
     width: 975px;
-}
-.app__timer-header{
-    display: flex;
-   justify-content: flex-end;
-    
 }
 
 .app__card {
@@ -146,29 +150,28 @@ color: #FFFFFF;
     perspective: 500px;
     border-radius: 4px;
     transition: transform 1s;
-    //backface-visibility: hidden;
     transform-style: preserve-3d;
+}
 
-  
-  }
-  .app__front, .app__back {
+.app__front,
+.app__back {
     position: absolute;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     transition: transform 1s;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    
-  }
-  .app__front { 
+}
+
+.app__front {
     background-image: url(../images/1.png);
-  }
-    
-  .app__back { 
+}
+
+.app__back {
     background-image: url(../images/back.svg);
-    transform: rotateY(180deg); 
-  }
-  .transform {
-    transform: rotateY(180deg); 
-  }
-  //.app__card:hover .app__front{ transform: rotateY(180deg); }
-  //.app__card:hover .app__back { transform: rotateY(360deg); }
+    transform: rotateY(180deg);
+}
+
+.transform {
+    transform: rotateY(180deg);
+}

@@ -1,3 +1,7 @@
+const clearElement = (element) => {
+    element.textContent = '';
+};
+
 window.application = {
     blocks: {},
     screens: {},
@@ -6,11 +10,13 @@ window.application = {
         if (window.application.currentScreen === screen) {
             return;
         }
+        // eslint-disable-next-line no-undef
         clearElement(app);
 
         window.application.currentScreen = screen;
 
         window.application.screens[screen]();
     },
-    renderBlock: (blockName, container) => block[blockName](container),
+    renderBlock: (blockName, container) =>
+        window.application.blocks[blockName](container),
 };
