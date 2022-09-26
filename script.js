@@ -1,9 +1,7 @@
 const app = document.querySelector('.app');
 const block = window.application.blocks;
 const screen = window.application.screens;
-/*const clearElement = (element) => {
-    element.textContent = '';
-};*/
+
 //функция создатель-блока
 const createElement = (tag, name, textContent, container, callback) => {
     const element = document.createElement(tag);
