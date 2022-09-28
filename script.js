@@ -2,6 +2,10 @@ const app = document.querySelector('.app');
 const block = window.application.blocks;
 const screen = window.application.screens;
 
+// eslint-disable-next-line no-unused-vars
+const clearElement = (element) => {
+    element.textContent = '';
+};
 //функция создатель-блока
 const createElement = (tag, name, textContent, container, callback) => {
     const element = document.createElement(tag);
@@ -25,9 +29,35 @@ const startGame = () => {
             card.classList.add('transform');
         });
     }, 5000);
+    const start = new Date();
+    setInterval(() => {
+        const currentTime = new Date();
+        const gameTime = {
+            minutes: currentTime.getSeconds() - start.getSeconds(),
+            seconds: currentTime.getSeconds() - start.getSeconds(),
+        };
+        document.querySelector(
+            '.app__timer_value'
+        ).textContent = `00:${gameTime.seconds}`;
+    }, 1000);
 };
 const flipCard = (event) => {
     event.target.parentElement.classList.remove('transform');
+    window.application.currentRound.push(event.target.textContent);
+
+    if (window.application.currentRound.length >= 2) {
+        if (
+            window.application.currentRound[0] !==
+            window.application.currentRound[1]
+        ) {
+            alert('lose');
+        } else {
+            const cards = app.querySelectorAll('.transform');
+            cards.length === 0 ? alert('win') : '';
+        }
+
+        window.application.currentRound = [];
+    }
 };
 
 const renderPopup = (container) => createElement('div', 'popup', '', container);
@@ -82,10 +112,24 @@ const renderDifficultyLeveChoiceButtons = (container) => {
 };
 const renderGameScreenCards = (container) => {
     const cards = createElement('div', 'cards', '', container);
-    for (let i = 0; i < 36; i++) {
+    const randomCards = createCardsForGame();
+    const difficult =
+        window.application.currentDifficulty === 'easy'
+            ? 6
+            : window.application.currentDifficulty === 'average'
+            ? 12
+            : 18;
+    for (let i = 0; i < difficult; i++) {
         const card = createElement('div', 'card', '', cards);
-        /*const front = */ createElement('div', 'front', '', card);
-        /*const back = */ createElement('div', 'back', '', card, flipCard);
+        const front = createElement('div', 'front', ``, card);
+        front.style.backgroundImage = `url(../images/${randomCards[i]}.png)`;
+        /*const back = */ createElement(
+            'div',
+            'back',
+            `${randomCards[i]}`,
+            card,
+            flipCard
+        );
     }
 };
 const renderGameScreenHeader = (container) =>
@@ -123,8 +167,29 @@ block['gameScreenCards'] = renderGameScreenCards;
 screen['difficultyLevel'] = renderDifficultyLevelScreen;
 screen['game'] = renderGameScreen;
 //стартовый рендер
-/*const cards = {
-    suit: [spades, clubs, diamonds, hearts],
-    rank: ['A','K','Q','J', 10, 9, 8, 7, 6 ] 
-}*/
+const cards = {
+    suit: ['spades', 'clubs', 'diamonds', 'hearts'],
+    rank: ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6],
+};
+const createCardsForGame = () => {
+    let cardsForGame = [];
+    const difficult =
+        window.application.currentDifficulty === 'easy'
+            ? 3
+            : window.application.currentDifficulty === 'average'
+            ? 6
+            : 9;
+    for (let i = 0; i < difficult; i++) {
+        const suit = cards.suit[Math.floor(Math.random() * cards.suit.length)];
+        const rank = cards.rank[Math.floor(Math.random() * cards.rank.length)];
+        if (!cardsForGame.includes(suit + rank)) {
+            cardsForGame.push(suit + rank);
+            console.log(cardsForGame);
+        } else {
+            i--;
+        }
+    }
+    cardsForGame = cardsForGame.concat(cardsForGame);
+    return cardsForGame.sort(() => Math.random() - 0.5);
+};
 window.application.renderScreen('difficultyLevel');

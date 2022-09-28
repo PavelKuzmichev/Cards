@@ -1,11 +1,8 @@
-const clearElement = (element) => {
-    element.textContent = '';
-};
-
 window.application = {
     blocks: {},
     screens: {},
     currentDifficulty: 'easy',
+    currentRound: [],
     renderScreen: (screen) => {
         if (window.application.currentScreen === screen) {
             return;
