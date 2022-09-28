@@ -10,15 +10,12 @@ body {
 .app {
     display: flex;
     flex-direction: column;
-    padding: 22px 26px 49px;
-    height: 100vh;
+    padding: 22px 24px 49px;
     align-items: center;
 }
 
 .app__popup {
     box-sizing: border-box;
-    width: 480px;
-    height: 459px;
     background: #c2f5ff;
     border-radius: 12px;
     padding: 52px 69px 48px;
@@ -36,7 +33,7 @@ body {
     font-size: 40px;
     line-height: 48px;
     text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     color: #004980;
 }
 
@@ -70,7 +67,7 @@ body {
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     text-align: center;
     color: #fff;
     background: #7ac100;
@@ -79,7 +76,7 @@ body {
 
 button:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 10px rgb(0 0 0 / 80%);
+    box-shadow: 1px 1px 10px black;
 }
 
 .app__button_choice_active {
@@ -110,7 +107,7 @@ button:hover {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     color: #fff;
 }
 
@@ -120,7 +117,7 @@ button:hover {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     color: #fff;
 }
 
@@ -139,7 +136,7 @@ button:hover {
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
-    width: 975px;
+    max-width: 975px;
 }
 
 .app__card {
@@ -163,15 +160,52 @@ button:hover {
     transform-style: preserve-3d;
 }
 
-.app__front {
-    //background-image: url(../images/1.png);
-}
-
 .app__back {
-    background-image: url(../images/back.svg);
     transform: rotateY(180deg);
 }
 
 .transform {
     transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 1024px) {
+    .app__cards {
+        width: 748px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .app__cards {
+        width: 315px;
+    }
+}
+@media screen and (max-width: 530px) {
+    .app__popup {
+        padding: 26px 35px 24px;
+    }
+}
+@media screen and (max-width: 471px) {
+    .app__header {
+        flex-direction: column;
+    }
+
+    .app__cards {
+        width: 205px;
+    }
+
+    .app__popup {
+        padding: 13px 17px 12px;
+        margin-top: 50px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .app__popup {
+        padding: 13px;
+        margin-top: 0;
+    }
+
+    .app__button_choice {
+        width: 60px;
+        height: 98px;
+    }
 }
