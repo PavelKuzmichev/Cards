@@ -1,10 +1,83 @@
+import './styles/style.css';
+import '../application.js'
+import '../importImgCards.js'
 const app = document.querySelector('.app');
 const block = window.application.blocks;
 const screen = window.application.screens;
 
-// eslint-disable-next-line no-unused-vars
-const clearElement = (element) => {
-    element.textContent = '';
+const cards = {
+    suit: ['spades', 'diamonds', 'diamonds', 'hearts'],
+    rank: ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6],
+};
+const restartGame = () => {
+    window.application.renderScreen('difficultyLevel');
+};
+const createCardsForGame = () => {
+    let cardsForGame = [];
+    const difficult =
+        window.application.currentDifficulty[
+            window.application.currentDifficulty.length - 1
+        ];
+    for (let i = 0; i < difficult; i++) {
+        const suit = cards.suit[Math.floor(Math.random() * cards.suit.length)];
+        const rank = cards.rank[Math.floor(Math.random() * cards.rank.length)];
+        if (!cardsForGame.includes(suit + rank)) {
+            cardsForGame.push(suit + rank);
+        } else {
+            i--;
+        }
+    }
+    cardsForGame = cardsForGame.concat(cardsForGame);
+    return cardsForGame.sort(() => Math.random() - 0.5);
+};
+
+
+const setTimer = (interval, func) => {
+    window.application.timers.push(
+        setInterval(() => {
+            func();
+        }, interval)
+    );
+};
+const stopTimer = () => {
+    window.application.timers.forEach((timer) => {
+        clearInterval(timer);
+    });
+};
+const gameRound = () => {
+    if (window.application.currentRound.length < 2) {
+        return;
+    }
+
+    if (
+        window.application.currentRound[0] !==
+        window.application.currentRound[1]
+    ) {
+        stopTimer();
+        loseGame();
+    } else {
+        const cards = app.querySelectorAll('.transform');
+        if (cards.length === 0) {
+            stopTimer();
+            setTimeout(() => {
+                winGame();
+            }, 500);
+        }
+    }
+
+    window.application.currentRound = [];
+};
+const startingTimer = (start) => {
+    const interval = Math.floor((Date.now() - start) / 1000);
+    const seconds = interval % 60 < 10 ? `0${interval % 60}` : interval % 60;
+    const minutes =
+        Math.floor(interval / 60) < 10
+            ? `0${Math.floor(interval / 60)}`
+            : Math.floor(interval / 60);
+    const currentTime = `${minutes}.${seconds}`;
+
+    document.querySelector('.app__timer_value').textContent = currentTime;
+    window.application.currentTime = currentTime;
 };
 //функция создатель-блока
 const createElement = (tag, name, textContent, container, callback) => {
@@ -21,45 +94,36 @@ const createElement = (tag, name, textContent, container, callback) => {
 const choiceDifLevel = (event) => {
     window.application.currentDifficulty = event.target.value;
 };
-const startGame = () => {
-    window.application.renderScreen('game');
+const hideCards = (time) => {
     setTimeout(() => {
         const cards = app.querySelectorAll('.app__card');
         cards.forEach((card) => {
             card.classList.add('transform');
         });
+    }, time);
+};
+const startGame = () => {
+    window.application.renderScreen('game');
+    hideCards(5000);
+    setTimeout(() => {
+        const start = new Date();
+        setTimer(1000, () => startingTimer(start));
     }, 5000);
-    const start = new Date();
-    setInterval(() => {
-        const currentTime = new Date();
-        const gameTime = {
-            minutes: currentTime.getSeconds() - start.getSeconds(),
-            seconds: currentTime.getSeconds() - start.getSeconds(),
-        };
-        document.querySelector(
-            '.app__timer_value'
-        ).textContent = `00:${gameTime.seconds}`;
-    }, 1000);
 };
-const flipCard = (event) => {
+const flipCard = (event, value) => {
     event.target.parentElement.classList.remove('transform');
-    window.application.currentRound.push(event.target.textContent);
-
-    if (window.application.currentRound.length >= 2) {
-        if (
-            window.application.currentRound[0] !==
-            window.application.currentRound[1]
-        ) {
-            alert('lose');
-        } else {
-            const cards = app.querySelectorAll('.transform');
-            cards.length === 0 ? alert('win') : '';
-        }
-
-        window.application.currentRound = [];
-    }
+    window.application.currentRound.push(value);
+    gameRound();
 };
 
+const winGame = () => {
+    alert(`Вы выиграли! время: ${window.application.currentTime}`);
+};
+const loseGame = () => {
+    const cards = app.querySelectorAll('.transform');
+    cards.forEach((card) => card.classList.remove('transform'));
+    alert('Вы проиграли!');
+};
 const renderPopup = (container) => createElement('div', 'popup', '', container);
 const renderDifficultyLevelTitle = (container) =>
     createElement('h1', 'difficultyLevelTitle', 'Выбери сложность', container);
@@ -71,7 +135,7 @@ const renderRestartButton = (container) =>
         'button_start',
         'Начать заново',
         container,
-        startGame
+        restartGame
     );
 const renderDifficultyLeveChoiceButtons = (container) => {
     const boxButtons = createElement('div', 'buttons', '', container);
@@ -106,30 +170,26 @@ const renderDifficultyLeveChoiceButtons = (container) => {
         boxButtons,
         choiceDifLevel
     );
-    buttonFirst.value = 'easy';
-    buttonSecond.value = 'average';
-    buttonThird.value = 'hard';
+    buttonFirst.value = 'easy-3';
+    buttonSecond.value = 'average-6';
+    buttonThird.value = 'hard-9';
 };
 const renderGameScreenCards = (container) => {
     const cards = createElement('div', 'cards', '', container);
     const randomCards = createCardsForGame();
-    const difficult =
-        window.application.currentDifficulty === 'easy'
-            ? 6
-            : window.application.currentDifficulty === 'average'
-            ? 12
-            : 18;
-    for (let i = 0; i < difficult; i++) {
+    const quantityCards =
+        window.application.currentDifficulty[
+            window.application.currentDifficulty.length - 1
+        ] * 2;
+
+    for (let i = 0; i < quantityCards; i++) {
         const card = createElement('div', 'card', '', cards);
         const front = createElement('div', 'front', ``, card);
         front.style.backgroundImage = `url(../images/${randomCards[i]}.png)`;
-        /*const back = */ createElement(
-            'div',
-            'back',
-            `${randomCards[i]}`,
-            card,
-            flipCard
+        const back = createElement('div', 'back', '', card, (event) =>
+            flipCard(event, randomCards[i])
         );
+        back.style.backgroundImage = `url(../images/back.png)`;
     }
 };
 const renderGameScreenHeader = (container) =>
@@ -167,29 +227,5 @@ block['gameScreenCards'] = renderGameScreenCards;
 screen['difficultyLevel'] = renderDifficultyLevelScreen;
 screen['game'] = renderGameScreen;
 //стартовый рендер
-const cards = {
-    suit: ['spades', 'clubs', 'diamonds', 'hearts'],
-    rank: ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6],
-};
-const createCardsForGame = () => {
-    let cardsForGame = [];
-    const difficult =
-        window.application.currentDifficulty === 'easy'
-            ? 3
-            : window.application.currentDifficulty === 'average'
-            ? 6
-            : 9;
-    for (let i = 0; i < difficult; i++) {
-        const suit = cards.suit[Math.floor(Math.random() * cards.suit.length)];
-        const rank = cards.rank[Math.floor(Math.random() * cards.rank.length)];
-        if (!cardsForGame.includes(suit + rank)) {
-            cardsForGame.push(suit + rank);
-            console.log(cardsForGame);
-        } else {
-            i--;
-        }
-    }
-    cardsForGame = cardsForGame.concat(cardsForGame);
-    return cardsForGame.sort(() => Math.random() - 0.5);
-};
+
 window.application.renderScreen('difficultyLevel');
