@@ -38,6 +38,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin-top: 158px;
+  width: 480px;
+  height: 459px;
 }
 
 .app__difficultyLevelTitle {
@@ -79,7 +81,7 @@ body {
 .app__button_start {
   border: none;
   width: 246px;
-  height: 48px;
+  min-height: 48px;
   font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
@@ -215,6 +217,60 @@ button:hover {
 .transform {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.app__wall {
+  width: 100vw;
+  position: absolute;
+  background-color: rgba(0, 73, 128, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.app__wall_non-active {
+  display: none;
+}
+
+.app__endGameTitleLose,
+.app__endGameTitleWin {
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  -webkit-font-feature-settings: 'pnum' on, 'lnum' on;
+          font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #004980;
+  margin-bottom: 28px;
+}
+
+.app__endGameText {
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  -webkit-font-feature-settings: 'pnum' on, 'lnum' on;
+          font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.app__endGameTimer {
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #000000;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 1024px) {
