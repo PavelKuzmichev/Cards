@@ -14,6 +14,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
+        "babel": "^6.23.0",
         "core-js": "^3.25.3",
         "file-loader": "^6.2.0",
         "prettier": "^2.7.1"
