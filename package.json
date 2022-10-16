@@ -6,12 +6,15 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write .",
         "lint:js": "eslint ./*.js",
-        "lint:css": "stylelint ./**/*.scss --fix",
+        "lint:css": "stylelint ./**/*.scss",
         "lint:ts": "tsc --noEmit",
+        "lint": "npm run format && npm run lint:ts && npm run lint:css",
         "build": "webpack --mode production",
-        "dev": "webpack serve"
+        "dev": "webpack serve",
+        "prepare": "husky install"
     },
     "dependencies": {
+        "babel": "^6.23.0",
         "core-js": "^3.25.3",
         "file-loader": "^6.2.0",
         "prettier": "^2.7.1"
@@ -29,6 +32,7 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
         "html-webpack-plugin": "^5.5.0",
+        "husky": "^8.0.1",
         "mini-css-extract-plugin": "^2.6.1",
         "postcss-loader": "^7.0.1",
         "stylelint": "^14.12.1",

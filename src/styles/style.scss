@@ -35,7 +35,7 @@ body {
     font-size: 40px;
     line-height: 48px;
     text-align: center;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #004980;
 }
 
@@ -69,7 +69,7 @@ body {
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     text-align: center;
     color: #fff;
     background: #7ac100;
@@ -109,7 +109,7 @@ button:hover {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #fff;
 }
 
@@ -119,7 +119,7 @@ button:hover {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #fff;
 }
 
@@ -169,45 +169,50 @@ button:hover {
 .transform {
     transform: rotateY(180deg);
 }
+
 .app__wall {
     width: 100vw;
     position: absolute;
-    background-color: rgba(0, 73, 128, 0.5);
+    background-color: rgb(0 73 128 / 50%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .app__wall_non-active {
     display: none;
 }
+
 .app__endGameTitleLose,
 .app__endGameTitleWin {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
     line-height: 48px;
-    font-feature-settings: "pnum" on, "lnum" on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #004980;
     margin-bottom: 28px;
 }
+
 .app__endGameText {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    font-feature-settings: "pnum" on, "lnum" on;
-    color: #000000;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000;
     margin-bottom: 10px;
 }
+
 .app__endGameTimer {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
-    color: #000000;
+    color: #000;
     margin-bottom: 40px;
 }
 @media screen and (max-width: 1024px) {

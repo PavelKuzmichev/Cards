@@ -155,8 +155,8 @@ const winGame = () => {
     if (imageWin) {
         imageWin.src = winImage;
     }
-    const wall = document.querySelector('.app__wall')
-    wall?.classList.remove('app__wall_non-active')
+    const wall = document.querySelector('.app__wall');
+    wall?.classList.remove('app__wall_non-active');
 };
 const loseGame = () => {
     if (!app) {
@@ -172,9 +172,9 @@ const loseGame = () => {
     }
     const cards = app.querySelectorAll('.transform');
     cards.forEach((card) => card.classList.remove('transform'));
-    const wall = document.querySelector('.app__wall')
-    
-    wall?.classList.remove('app__wall_non-active')
+    const wall = document.querySelector('.app__wall');
+
+    wall?.classList.remove('app__wall_non-active');
 };
 const renderEndGameTitleLose = (container: Element) => {
     createElement('h1', 'endGameTitleLose', 'Вы проиграли!', container);
